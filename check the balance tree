@@ -1,0 +1,58 @@
+
+package com.company;
+
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+
+        abc tree =new abc();
+        tree.root=new node(1);
+        tree.root.left=new node(2);
+        tree.root.right=new node(3);
+        tree.root.left.left=new node(4);
+        tree.root.left.right =new node(5);
+        if(tree.isbalanced(tree.root)){
+            System.out.print("tree is balanced");
+        }
+        else {
+            System.out.print("not balanced ");
+        }
+    }
+}
+class node {
+    int data;
+    node left ;
+    node right;
+
+    public node(int data) {
+        this.data = data;
+        this.left=null;
+        this.right=null;
+    }
+}
+class abc{
+    node root  ;
+    boolean isbalanced(node node ){
+
+
+    int lh, rh;
+    if(node ==null)
+        return true;
+    lh =height(node.left);
+    rh=height(node.left);
+    if (Math.abs(lh-rh)<=1&&isbalanced(node.left)&&isbalanced(node.right))
+        return true;
+    else
+        return false;
+ }
+ int height (node node ){
+        if(node==null){
+            return 0;
+        }
+        return 1+Math.max(height(node.left),height(node.right));
+ }
+}
