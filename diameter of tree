@@ -1,0 +1,49 @@
+
+package com.company;
+
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[] args) {
+        abc tree =new abc();
+        tree.root=new node(1);
+        tree.root.left=new node(2);
+        tree.root.right=new node(3);
+        tree.root.left.left=new node(4);
+        System.out.print("diameter of given binary tree is :"+tree.diameter(tree.root));
+
+    }
+}
+class node{
+    int data;
+    node left ;
+    node right;
+
+    public node(int data) {
+        this.data = data;
+        this.right=null;
+        this.left=null;
+    }
+}
+class abc{
+    node root;
+    int diameter(node root) {
+        if (root == null) {
+            return 0;
+        }
+        int lheigth = height(root.left);
+        int rheight = height(root.right);
+        int ldiameter = diameter(root.left);
+        int rdiameter = diameter(root.right);
+        return Math.max(lheigth + rheight + 1,Math.max(ldiameter, rdiameter));
+    }
+
+    static int height(node node){
+        if(node==null)
+            return 0;
+        return (1+Math.max(height(node.left),height(node.left)));
+    }
+}
