@@ -1,0 +1,46 @@
+
+package com.company;
+
+import java.io.*;
+import java.lang.*;
+import java.util.*;
+
+public class Main {
+
+    public static void main(String[]args) {
+
+        abc tree =new abc();
+        tree.root=new node(1);
+        tree.root.left=new node(2);
+        tree.root.right =new node(3);
+        System.out.print("height of tree "+ tree.maxdepth(tree.root));
+    }
+}
+class node{
+    int data ;
+    node left;
+    node right;
+
+    public node(int data) {
+        this.data = data;
+        this.left=null;
+        this.right=null;
+    }
+}
+class abc{
+    public node root;
+    int maxdepth(node current){
+        if(current==null){
+            return 0;
+        }
+        else {
+            int ldepth=maxdepth(current.left);
+            int rdepth=maxdepth(current.right);
+            if(ldepth>rdepth){
+                return (ldepth+1);
+            }
+            else
+                return (rdepth+1);
+        }
+    }
+}
