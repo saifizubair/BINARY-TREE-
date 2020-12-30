@@ -1,0 +1,50 @@
+
+package com.company;
+
+import java.io.*;
+import java.lang.*;
+import java.util.Scanner;
+
+public class Main {
+
+    public static void main(String[]args){
+        abc tree =new abc();
+        tree.root1 =new node(1);
+        tree.root1.left =new node(2);
+        tree.root1.right=new node(3);
+
+        tree.root2 =new node(1);
+        tree.root2.left =new node(2);
+        tree.root2.right=new node(3);
+
+        if (tree.identicaltrees(tree.root1, tree.root2)){
+            System.out.println("trees are identical");
+        }
+        else {
+            System.out.println("trees are not identical");
+        }
+    }
+}
+class node {
+    int data;
+    node left ;
+    node right;
+
+    public node(int data) {
+        this.data = data;
+        this.right=null;
+        this.left =null;
+    }
+}
+class abc{
+    node root1 , root2;
+    boolean identicaltrees(node a ,node b){
+        if (a==null&&b==null){
+            return true;
+        }
+        if (a!=null && b!=null){
+            return (a.data==b.data&&identicaltrees(a.left,b.left)&&identicaltrees(a.right,b.right));
+        }
+        return false;
+    }
+}
