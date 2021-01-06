@@ -1,0 +1,65 @@
+
+package com.company;
+
+import java.io.*;
+import java.lang.*;
+import java.util.Scanner;
+class Node
+{
+    int data;
+    Node left;
+    Node right;
+    Node(int d)
+    {
+        data=d;
+        left=right=null;
+    }
+}
+public class Main {
+
+    public static void main(String[]args){
+   abc tree =new abc();
+   tree.root=new node(1);
+   tree.root.left=new node(2);
+   tree.root.right =new node(3);
+   tree.root.left.left=new node(4);
+   tree.root.left.right=new node(5);
+   tree.root.right.right=new node(7);
+   tree.root.right.left=new node(6);
+   System.out.println("LCA(4,5)="+tree.findlca(4,5).data);
+        System.out.println("LCA(4,6)="+tree.findlca(4,6).data);
+    }
+}
+class node{
+    int data;
+    node left;
+    node right;
+
+    public node(int data) {
+        this.data = data;
+        this.right=null;
+        this.left=null;
+    }
+}
+class abc{
+    node root;
+    node findlca(int n1,int n2){
+        return findlca(root,n1,n2);
+    }
+    node findlca(node node , int n1, int n2){
+        if (node==null){
+            return null;
+        }
+        if (node.data==n1||node.data==n2){
+            return node;
+        }
+        node left_lca=findlca(node.left,n1,n2);
+        node right_lca =findlca(node.right,n1,n2);
+        if (left_lca!=null&&right_lca!=null){
+            return node;
+        }
+        else {
+            return (left_lca!=null)?left_lca:right_lca;
+        }
+    }
+}
