@@ -1,0 +1,47 @@
+
+package com.company;
+
+import java.io.*;
+import java.lang.*;
+import java.util.Scanner;
+public class Main {
+
+    public static void main(String[] args) {
+
+        abc tree= new abc();
+        tree.root =new node(1);
+        tree.root.left =new node(2);
+        tree.root.right =new node(3);
+        tree.root.left.left =new node(4);
+        tree.root.left.right =new node(5);
+        tree.root.right.left=new node(6);
+        tree.root.right.right=new node(7);
+        tree.rightview(tree.root,0);
+    }
+}
+class node {
+    int data;
+    node right;
+    node left;
+
+    public node(int data) {
+        this.data = data;
+        this.left=null;
+        this.right=null;
+    }
+}
+class abc{
+    public node root;
+    int max_level;
+    public void rightview(node node , int level){
+        if (node==null){
+            return;
+        }
+        if (level>=max_level){
+            System.out.print(node.data+" ");
+            max_level++;
+        }
+        rightview(node.right,level+1);
+        rightview(node.left,level+1);
+    }
+}
