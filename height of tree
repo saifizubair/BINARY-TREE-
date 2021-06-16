@@ -1,22 +1,21 @@
 
 package com.company;
 
-import java.io.*;
-import java.lang.*;
 import java.util.*;
 
-public class Main {
+public class Main{
 
     public static void main(String[]args) {
-
         abc tree =new abc();
-        tree.root=new node(1);
-        tree.root.left=new node(2);
-        tree.root.right =new node(3);
-        System.out.print("height of tree "+ tree.maxdepth(tree.root));
+        tree.root = new node(1);
+        tree.root.left = new node(2);
+        tree.root.right = new node(3);
+        tree.root.left.left = new node(4);
+        tree.root.left.right = new node(5);
+      System.out.print( tree.maxdeapth(tree.root));
     }
 }
-class node{
+class node {
     int data ;
     node left;
     node right;
@@ -28,19 +27,14 @@ class node{
     }
 }
 class abc{
-    public node root;
-    int maxdepth(node current){
-        if(current==null){
+    public node root =null;
+
+    int maxdeapth (node current){
+        if (current==null){
             return 0;
         }
-        else {
-            int ldepth=maxdepth(current.left);
-            int rdepth=maxdepth(current.right);
-            if(ldepth>rdepth){
-                return (ldepth+1);
-            }
-            else
-                return (rdepth+1);
-        }
+        int ldeapth =maxdeapth(current.left);
+        int rdeapth =maxdeapth(current.right);
+       return Math.max(ldeapth+1,rdeapth+1);
     }
 }
