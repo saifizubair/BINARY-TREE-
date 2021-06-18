@@ -43,7 +43,7 @@ class abc{
     if(node ==null)
         return true;
     lh =height(node.left);
-    rh=height(node.left);
+    rh=height(node.right);
     if (Math.abs(lh-rh)<=1&&isbalanced(node.left)&&isbalanced(node.right))
         return true;
     else
