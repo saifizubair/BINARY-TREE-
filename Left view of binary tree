@@ -31,16 +31,18 @@ class node {
 }
 class abc{
     node root;
-    int maxlevel;
-    public  void leftview(node node ,int level){
-        if (node==null){
+   void leftview(node node){
+       if (node ==null){
             return;
         }
-        if (level>=maxlevel){
-            System.out.print(node.data+" ");
-            maxlevel++;
+        Queue<node>q =new LinkedList<>();
+        q.add(node);
+        while (!q.isEmpty()){
+            node rem =q.remove();
+            System.out.print(rem.data+" ");
+            if (rem.left!=null){
+                q.add(rem.left);
+            }
         }
-        leftview(node.left,level+1);
-        leftview(node.right,level+1);
-    }
+   }
 }
